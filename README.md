@@ -9,6 +9,8 @@ This package provides logic for async process execution.
 `bp` is best suitable for running tests or builds for your projects, but you can run any processes with it. 
 
 # Example
+![progress-messages  example](./img/progress-messages.gif)
+
 Given this configuration:
 ```elisp
 (require 'bp)
@@ -24,7 +26,7 @@ Given this configuration:
 ;; set key-binding
 (define-key global-map "\C-ct" 'run-tests)
 ```
-You get this:
+You get this behavior:
 ![grunt test example](./img/run-grunt-test.gif)
 
 What's happening:
