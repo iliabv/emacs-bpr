@@ -37,13 +37,13 @@ What's happening:
 
 # Installation
 ### MELPA:
-Use `M-x package-install bp` and write `(require 'bp)` in your conifg.
+Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
 
 ### Manually
 ```elisp
-;; If you have cloned this repo into `~/some-path/emacs-bp/`
-(add-to-list 'load-path "~/some-path/emacs-bp/")
-(require 'bp)
+;; If you have cloned this repo into `~/some-path/emacs-bpr/`
+(add-to-list 'load-path "~/some-path/emacs-bpr/")
+(require 'bpr)
 ```
 
 # Configuration
@@ -51,7 +51,7 @@ You can find all configuration options in the source code.
 
 If you want to set options globally for all processes:
 ```elisp
-(require 'bp)
+(require 'bpr)
 (setq bpr-close-after-success t) ;; close error window after process ended successfully (if it's not already closed)
 (setq bpr-process-mode #'comint-mode) ;; use comint-mode for processes output buffers instead of shell-mode
 ```
@@ -63,7 +63,7 @@ If you want to set options to particular process, set them dynamically right bef
     (bpr-spawn "ping -c 4 www.wikipedia.org"))
 ```
 
-Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bp` would use `projectile-project-root` function.
+Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bpr` would use `projectile-project-root` function.
 
 Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time. Template for buffers names: `*process-name (process-directory)*`
 
