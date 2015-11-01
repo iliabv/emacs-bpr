@@ -1,4 +1,4 @@
-# Emacs-BPR (Background Process Runner)
+## Emacs-BPR (Background Process Runner)
 This package provides logic for async process execution.
 
 `bpr` can:
@@ -8,7 +8,7 @@ This package provides logic for async process execution.
 
 `bpr` is most suitable for running tests or builds for your projects, but you can run any processes with it. 
 
-# Example
+## Example
 ![progress-messages  example](./img/progress-messages.gif)
 
 Given this configuration:
@@ -35,7 +35,7 @@ What's happening:
 - If process ends successfully - success message is being shown.
 - If process ends with error - error message is being shown and window with output buffer is being opened.
 
-# Installation
+## Installation
 ### MELPA:
 Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
 
@@ -46,7 +46,7 @@ Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
 (require 'bpr)
 ```
 
-# Configuration
+## Configuration
 You can find all configuration options in the source code.
 
 If you want to set options globally for all processes:
