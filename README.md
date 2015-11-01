@@ -1,4 +1,4 @@
-# Emacs-BP (background processes)
+# Emacs-BP (Background Process Runner)
 This package provides logic for async process execution.
 
 `bp` can:
