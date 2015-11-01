@@ -1,12 +1,16 @@
-;;; bp.el --- Background process managment
+;;; bp.el --- Background Process managment
 
 ;; Author: Ilya Babanov <ilya-babanov@ya.ru>
-;; Version: 1.0.0
-;; Keywords: background, process, managment
 ;; URL: https://github.com/ilya-babanov/emacs-bp
+;; Version: 1.0
+;; Package-Requires: ((emacs "24"))
+;; Keywords: background, async, process, managment
 
 ;;; Commentary:
-;; This package provides functionality for running processes in background
+;; This package provides functionality for running processes in background.
+;; For detailed instructions see README.md file.
+
+;;; Code:
 
 (defcustom bp-close-after-success nil
   "Should process's window be closed after success"
@@ -177,3 +181,5 @@ or projectile-project-root, if it's available."
     (count-lines (point) (buffer-end direction)))
 
 (provide 'bp)
+
+;;; bp.el ends here
