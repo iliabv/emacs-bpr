@@ -187,8 +187,8 @@ or projectile-project-root, if it's available."
       (scroll-down-command (bpr-get-remaining-lines-count direction)))))
 
 (defun bpr-colorize-process-buffer (process)
-  (with-current-buffer (process-buffer process)
-    (when (fboundp 'ansi-color-apply-on-region)
+  (when (fboundp 'ansi-color-apply-on-region)
+    (with-current-buffer (process-buffer process)
       (ansi-color-apply-on-region (point-min) (point-max)))))
 
 (defun bpr-get-remaining-lines-count (direction)
