@@ -64,6 +64,11 @@ or projectile-project-root, if it's available."
   :group 'bpr
   :type 'number)
 
+(defcustom bpr-colorize-output nil
+  "Should process's output be colorized"
+  :group 'bpr
+  :type 'boolean)
+
 (defun bpr-spawn (cmd)
   "Invokes passed CMD in background."
   (interactive "sCommand:")
@@ -107,6 +112,7 @@ or projectile-project-root, if it's available."
         'open-after-error bpr-open-after-error
         'show-progress bpr-show-progress
         'window-creator bpr-window-creator
+        'colorize-output bpr-colorize-output
         'scroll-direction bpr-scroll-direction
         'start-time (float-time)))
 
@@ -187,7 +193,9 @@ or projectile-project-root, if it's available."
       (scroll-down-command (bpr-get-remaining-lines-count direction)))))
 
 (defun bpr-colorize-process-buffer (process)
-  (when (fboundp 'ansi-color-apply-on-region)
+  (when (and
+         (process-get process 'colorize-output)
+         (fboundp 'ansi-color-apply-on-region))
     (with-current-buffer (process-buffer process)
       (ansi-color-apply-on-region (point-min) (point-max)))))
 
