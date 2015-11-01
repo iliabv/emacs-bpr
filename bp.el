@@ -136,16 +136,16 @@ or projectile-project-root, if it's available."
 (defun bp-show-progress-message (process)
   (let* ((status (process-status process))
          (time-diff (bp-get-process-time-diff process)))
-    (message "Status: %s   Time: %f   Process: %s" status time-diff process)))
+    (message "Status: %s   Time: %.1f   Process: %s" status time-diff process)))
 
 (defun bp-show-success-message (process)
-  (message "Status: %s   Time: %f   Process: %s"
+  (message "Status: %s   Time: %.3f   Process: %s"
            (propertize "Success" 'face '(:foreground "green"))
            (bp-get-process-time-diff process)
            process))
 
 (defun bp-show-error-message (process exit-code)
-  (message "Status: %s   Code: %s   Time: %f   Process: %s"
+  (message "Status: %s   Code: %s   Time: %.3f   Process: %s"
            (propertize "Error" 'face '(:foreground "red"))
            exit-code
            (bp-get-process-time-diff process)
