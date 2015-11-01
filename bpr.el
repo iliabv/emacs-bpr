@@ -23,14 +23,17 @@
 
 (defcustom bpr-open-after-error t
   "Should window with process output be opened after error."
+  :group 'bpr
   :type 'boolean)
 
 (defcustom bpr-window-creator #'split-window-vertically
   "Function for creating window for process."
+  :group 'bpr
   :type 'function)
 
 (defcustom bpr-process-mode #'shell-mode
   "Mode for process's buffer."
+  :group 'bpr
   :type 'function)
 
 (defcustom bpr-process-directory nil
@@ -38,22 +41,27 @@
 If not nil, it will be assigned to default-direcotry.
 If nil, standart default-direcotry will be used,
 or projectile-project-root, if it's available."
+  :group 'bpr
   :type 'string)
 
 (defcustom bpr-erase-process-buffer t
   "Shuld process's buffer be erased before starting new process."
+  :group 'bpr
   :type 'boolean)
 
 (defcustom bpr-scroll-direction 1
   "Scroll text in error window, -1 for scroll up, 1 - scroll down."
+  :group 'bpr
   :type 'number)
 
 (defcustom bpr-show-progress t
   "Should process's progress be shown."
+  :group 'bpr
   :type 'boolean)
 
 (defcustom bpr-poll-timout 0.2
   "Progress update interval"
+  :group 'bpr
   :type 'number)
 
 (defun bpr-spawn (cmd)
