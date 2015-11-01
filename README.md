@@ -48,7 +48,7 @@ Use `M-x package-install bp` and then in your config file:
 ```
 
 # Configuration
-You can read all configuration options in the source code.
+You can find all configuration options in the source code.
 
 Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bp` would use `projectile-project-root` function.
 
