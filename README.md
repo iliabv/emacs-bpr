@@ -6,7 +6,7 @@ This package provides logic for async process execution.
 - show progress messages in echo area
 - open window with process's output buffer in case of errors
 
-`bpr` is best suitable for running tests or builds for your projects, but you can run any processes with it. 
+`bpr` is most suitable for running tests or builds for your projects, but you can run any processes with it. 
 
 # Example
 ![progress-messages  example](./img/progress-messages.gif)
