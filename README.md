@@ -15,12 +15,18 @@ Given this configuration:
 ```elisp
 (require 'bpr)
 
+;; Set global config for bpr.
+;; Variables below would be applied to all processes.
+(setq bpr-colorize-output t)
+(setq bpr-close-after-success t)
+
 ;; define function for running desired process
 (defun run-tests ()
   "Spawns 'grunt test' process"
   (interactive)
-  (let* ((bpr-scroll-direction -1)
-         (bpr-close-after-success t))
+  ;; Set dynamic config for process.
+  ;; Variables below would be applied only to particular process
+  (let* ((bpr-scroll-direction -1))
     (bpr-spawn "grunt test --color")))
 
 ;; set key-binding
@@ -52,7 +58,7 @@ You can find all configuration options in the source code.
 If you want to set options globally for all processes:
 ```elisp
 (require 'bpr)
-(setq bpr-close-after-success t) ;; close error window after process ended successfully (if it's not already closed)
+(setq bpr-colorize-output t) ;; use ansi-color-apply-on-region function on output buffer
 (setq bpr-process-mode #'comint-mode) ;; use comint-mode for processes output buffers instead of shell-mode
 ```
 
