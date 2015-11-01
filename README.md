@@ -1,12 +1,12 @@
-# Emacs-BP
-This package provides handy logic for managing processes in background.
+# Emacs-BP (background processes)
+This package provides logic for async process execution.
 
 `bp` can:
-- spawn async processes in background (you are free to do other things, while process is being executed)
+- spawn processes asynchronously in background (you are free to do other things, while process is being executed)
 - show progress messages in echo area
-- open windows with output buffers in case of errors
+- open window with process's output buffer in case of errors
 
-`bp` is best for running tests or build for your projects, but you can run any processes with it. 
+`bp` is best suitable for running tests or builds for your projects, but you can run any processes with it. 
 
 # Example
 Given this configuration:
@@ -14,21 +14,21 @@ Given this configuration:
 (require 'bp)
 
 ;; define function for running desired process
-(defun grunt-tests ()
-  "Spawns 'grunt test' task"
+(defun run-tests ()
+  "Spawns 'grunt test' process"
   (interactive)
   (let* ((bp-scroll-direction -1)
          (bp-close-after-success t))
     (bp-spawn "grunt test --color")))
 
 ;; set key-binding
-(define-key global-map "\C-ct" 'grunt-tests)
+(define-key global-map "\C-ct" 'run-tests)
 ```
 You get this:
 ![grunt test example](./img/run-grunt-test.gif)
 
-* What's happening:
-- User enters predefined key-binding, which invokes function `grunt-tests`.
+What's happening:
+- User enters predefined key-binding, which invokes function `run-tests`.
 - `bp-spawn` starts async process `grunt test --color` and writes progress messages in echo area.
 - If process ends successfully - success message is being shown.
 - If process ends with error - error message is being shown and window with output buffer is being opened.
@@ -47,6 +47,20 @@ Use `M-x package-install bp` and write `(require 'bp)` in your conifg.
 # Configuration
 You can find all configuration options in the source code.
 
+If you want to set options globally for all processes:
+```elisp
+(require 'bp)
+(setq bp-close-after-success t) ;; close error window after process ended successfully (if it's not already closed)
+(setq bp-process-mode #'comint-mode) ;; use comint-mode for processes output buffers instead of shell-mode
+```
+
+If you want to set options to particular process, set them dynamically right before `bp-spawn`:
+```elisp
+(let* ((bp-erase-process-buffer nil) ;; don't erase process output buffer before starting this process again.
+       (bp-show-progress nil)) ;; don't show progress messages (only success/error messages will be displayed)
+    (bp-spawn "ping -c 4 www.wikipedia.org"))
+```
+
 Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bp` would use `projectile-project-root` function.
 
 Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time. Template for buffers names: `*process-name (process-directory)*`
@@ -63,8 +77,8 @@ Default major mode for process's output buffer is `shell-mode`. Note, that this 
 ```
 ##### Running builds
 ```elisp
-(defun my-test-runner ()
-  "Spawns test process"
+(defun my-build-runner ()
+  "Spawns build process"
   (interactive)
   (let* ((bp-process-directory "~/chromium/") ;; spawn process in this directory (instead of default-directory or projectile-project-root)
          (bp-poll-timout 60.0)) ;; show progress messages once in 60 seconds
