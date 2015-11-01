@@ -9,8 +9,6 @@ This package provides logic for async process execution.
 `bpr` is most suitable for running tests or builds for your projects, but you can run any processes with it. 
 
 ## Example
-![progress-messages  example](./img/progress-messages.gif)
-
 Given this configuration:
 ```elisp
 (require 'bpr)
@@ -32,8 +30,10 @@ Given this configuration:
 ;; set key-binding
 (define-key global-map "\C-ct" 'run-tests)
 ```
-You get this behavior:
-![grunt test example](./img/run-grunt-test.gif)
+You get this behavior for success:
+![grunt test success](./img/success-run.gif)
+And this for error:
+![grunt test error](./img/error-run.gif)
 
 What's happening:
 - User enters predefined key-binding, which invokes function `run-tests`.
