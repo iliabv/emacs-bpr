@@ -1,4 +1,4 @@
-;;; bp.el --- Background Process managment
+;;; bp.el --- Background Process Runner
 
 ;; Author: Ilya Babanov <ilya-babanov@ya.ru>
 ;; URL: https://github.com/ilya-babanov/emacs-bp
@@ -12,20 +12,25 @@
 
 ;;; Code:
 
+(defgroup bp nil
+  "Background Process Runner"
+  :group 'processes
+  :group 'extensions)
+
 (defcustom bp-close-after-success nil
-  "Should process's window be closed after success"
+  "Should process's window be closed after success."
   :type 'boolean)
 
 (defcustom bp-open-after-error t
-  "Should window with process output be opened after error"
+  "Should window with process output be opened after error."
   :type 'boolean)
 
 (defcustom bp-window-creator #'split-window-vertically
-  "Function for creating window for process"
+  "Function for creating window for process."
   :type 'function)
 
 (defcustom bp-process-mode #'shell-mode
-  "Mode for process's buffer"
+  "Mode for process's buffer."
   :type 'function)
 
 (defcustom bp-process-directory nil
@@ -36,15 +41,15 @@ or projectile-project-root, if it's available."
   :type 'string)
 
 (defcustom bp-erase-process-buffer t
-  "Shuld process's buffer be erased before starting new process"
+  "Shuld process's buffer be erased before starting new process."
   :type 'boolean)
 
 (defcustom bp-scroll-direction 1
-  "Scroll text in error window, -1 for scroll up, 1 - scroll down"
+  "Scroll text in error window, -1 for scroll up, 1 - scroll down."
   :type 'number)
 
 (defcustom bp-show-progress t
-  "Should process's progress be shown"
+  "Should process's progress be shown."
   :type 'boolean)
 
 (defcustom bp-poll-timout 0.2
@@ -52,7 +57,7 @@ or projectile-project-root, if it's available."
   :type 'number)
 
 (defun bp-spawn (cmd)
-  "Invokes passed command in background"
+  "Invokes passed CMD in background."
   (interactive "sCommand:")
   (let* ((proc-name (bp-create-process-name cmd))
          (process (get-process proc-name)))
@@ -175,7 +180,8 @@ or projectile-project-root, if it's available."
 
 (defun bp-colorize-process-buffer (process)
   (with-current-buffer (process-buffer process)
-      (ansi-color-apply-on-region (point-min) (point-max))))
+    (when (fboundp 'ansi-color-apply-on-region)
+      (ansi-color-apply-on-region (point-min) (point-max)))))
 
 (defun bp-get-remaining-lines-count (direction)
     (count-lines (point) (buffer-end direction)))
