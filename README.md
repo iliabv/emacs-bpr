@@ -2,11 +2,11 @@
 This package provides handy logic for managing processes in background.
 
 `bp` can:
-- spawn async processes in background (you are free to do other things, whlie process is being executed)
+- spawn async processes in background (you are free to do other things, while process is being executed)
 - show progress messages in echo area
-- open windows with output buffers in case of errrors
+- open windows with output buffers in case of errors
 
-`bp` is best for running tests for your code, but you can run any process. 
+`bp` is best for running tests or build for your projects, but you can run any processes with it. 
 
 # Example
 Given this configuration:
@@ -29,16 +29,13 @@ You get this:
 
 * What's happening:
 - User enters predefined key-binding, which invokes function `grunt-tests`.
-- `bp-spawn` starts async process `grunt test --color` and writes progress notifications in echo area.
+- `bp-spawn` starts async process `grunt test --color` and writes progress messages in echo area.
 - If process ends successfully - success message is being shown.
 - If process ends with error - error message is being shown and window with output buffer is being opened.
 
 # Installation
 ### MELPA:
-Use `M-x package-install bp` and then in your config file:
-```elisp
-(require 'bp)
-```
+Use `M-x package-install bp` and write `(require 'bp)` in your conifg.
 
 ### Manually
 ```elisp
@@ -52,9 +49,9 @@ You can find all configuration options in the source code.
 
 Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bp` would use `projectile-project-root` function.
 
-Default major mode for process's output buffer is ``shell-mode``. Note, that this buffer is only showed in case of error, but you can manually open it. Template for buffer name: `*process-name (process-directory)*`
+Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time. Template for buffers names: `*process-name (process-directory)*`
 
-### Examples for differrent use cases
+### Examples for different use cases
 ##### Running tests
 ```elisp
 (defun my-test-runner ()
