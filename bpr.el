@@ -81,6 +81,7 @@ or projectile-project-root, if it's available."
           (bpr-try-refresh-process-window process))
       (bpr-run-process cmd))))
 
+(defvar bpr-last-buffer nil)
 (defun bpr-run-process (cmd)
   (message "Running process '%s'" cmd)
   (let* ((default-directory (bpr-get-current-directory))
@@ -88,11 +89,17 @@ or projectile-project-root, if it's available."
          (buff-name (concat "*" proc-name "*"))
          (buffer (get-buffer-create buff-name))
          (process (start-process-shell-command proc-name buffer cmd)))
+    (setq bpr-last-buffer buffer)
     (message default-directory)
     (set-process-plist process (bpr-create-process-plist))
     (set-process-sentinel process 'bpr-handle-result)
     (bpr-handle-progress process)
     (bpr-config-process-buffer buffer)))
+
+(defun bpr-open-last-buffer ()
+  "Open the buffer last time `bpr-spawn' is used."
+  (interactive)
+  (set-window-buffer (funcall bpr-window-creator) bpr-last-buffer))
 
 (defun bpr-get-current-directory ()
   (if bpr-process-directory
