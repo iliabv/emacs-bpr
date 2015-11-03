@@ -69,6 +69,7 @@ or projectile-project-root, if it's available."
   :group 'bpr
   :type 'boolean)
 
+;;;###autoload
 (defun bpr-spawn (cmd)
   "Invokes passed CMD in background."
   (interactive "sCommand:")
