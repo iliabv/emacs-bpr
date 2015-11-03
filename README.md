@@ -69,7 +69,7 @@ If you want to set options to particular process, set them dynamically right bef
     (bpr-spawn "ping -c 4 www.wikipedia.org"))
 ```
 
-Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bpr` would use `projectile-project-root` function.
+Default directory for processes is `default-directory` of current buffer, but with `projectile` installed, `bpr` would use `projectile-project-root` function. If you want to set custom logic for project root detection, just reimplement `bpr-try-get-project-root` function.
 
 Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time by `bpr-open-last-buffer`. Template for buffers names: `*process-name (process-directory)*`
 

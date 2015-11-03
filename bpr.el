@@ -2,7 +2,7 @@
 
 ;; Author: Ilya Babanov <ilya-babanov@ya.ru>
 ;; URL: https://github.com/ilya-babanov/emacs-bpr
-;; Version: 1.2
+;; Version: 1.3
 ;; Package-Requires: ((emacs "24"))
 ;; Keywords: background, async, process, managment
 
