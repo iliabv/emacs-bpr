@@ -42,9 +42,14 @@
   "Directory for process.
 If not nil, it will be assigned to default-direcotry.
 If nil, standart default-direcotry will be used,
-or projectile-project-root, if it's available."
+or projectile-project-root, if it's available and bpr-use-projectile isn't nil."
   :group 'bpr
   :type 'string)
+
+(defcustom bpr-use-projectile t
+  "Should projectile-project-root (if available) be used for determining default-directory"
+  :group 'bpr
+  :type 'boolean)
 
 (defcustom bpr-erase-process-buffer t
   "Shuld process's buffer be erased before starting new process."
@@ -113,7 +118,7 @@ or projectile-project-root, if it's available."
     (bpr-try-get-project-root)))
 
 (defun bpr-try-get-project-root ()
-  (if (fboundp 'projectile-project-root)
+  (if (and bpr-use-projectile (fboundp 'projectile-project-root))
       (projectile-project-root)
     default-directory))
 
