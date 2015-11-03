@@ -69,6 +69,9 @@ or projectile-project-root, if it's available."
   :group 'bpr
   :type 'boolean)
 
+(defvar bpr-last-buffer nil
+  "Buffer for the last spawned process")
+
 ;;;###autoload
 (defun bpr-spawn (cmd)
   "Invokes passed CMD in background."
@@ -81,7 +84,13 @@ or projectile-project-root, if it's available."
           (bpr-try-refresh-process-window process))
       (bpr-run-process cmd))))
 
-(defvar bpr-last-buffer nil)
+(defun bpr-open-last-buffer ()
+  "Open the buffer last time `bpr-spawn' is used."
+  (interactive)
+  (if (buffer-live-p bpr-last-buffer)
+      (set-window-buffer (funcall bpr-window-creator) bpr-last-buffer)
+    (message "Can't find last used buffer")))
+
 (defun bpr-run-process (cmd)
   (message "Running process '%s'" cmd)
   (let* ((default-directory (bpr-get-current-directory))
@@ -95,11 +104,6 @@ or projectile-project-root, if it's available."
     (set-process-sentinel process 'bpr-handle-result)
     (bpr-handle-progress process)
     (bpr-config-process-buffer buffer)))
-
-(defun bpr-open-last-buffer ()
-  "Open the buffer last time `bpr-spawn' is used."
-  (interactive)
-  (set-window-buffer (funcall bpr-window-creator) bpr-last-buffer))
 
 (defun bpr-get-current-directory ()
   (if bpr-process-directory
