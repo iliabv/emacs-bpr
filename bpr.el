@@ -12,6 +12,8 @@
 
 ;;; Code:
 
+(require 'shell)
+
 (defgroup bpr nil
   "Background Process Runner"
   :group 'processes
