@@ -1,12 +1,12 @@
 ## Emacs-BPR (Background Process Runner)
 This package provides logic for async process execution.
 
-It's similar to 'async-shell-command', but:
-- 'bpr' spawns processes asynchronously without displaying output buffers.
-- 'bpr' shows progress messages for running processes in echo area.
-- 'bpr' can display buffer with process output in case of errors.
-- 'bpr' can use 'projectile' for assigning process directory.
-- 'bpr' can format process output (understands ansi escape codes).
+It's similar to `async-shell-command`, but:
+- `bpr` spawns processes asynchronously without displaying output buffers.
+- `bpr` shows progress messages for running processes in echo area.
+- `bpr` can display buffer with process output in case of errors.
+- `bpr` can use `projectile` for assigning process directory.
+- `bpr` can format process output (understands ansi escape codes).
 - you can set different options for different processes.
 
 `bpr` is very handy for running tests/builds, but you can run any processes with it. 
@@ -97,38 +97,38 @@ Default major mode for process's output buffer is `shell-mode`. Note, that this 
 ```
 
 ### All options
-###### 'bpr-close-after-success nil'
+###### `bpr-close-after-success nil`
 Indicates whether the process output window is closed on success.
 
-###### 'bpr-open-after-error t'
+###### `bpr-open-after-error t`
 Indicates whether the process output window is shown on error.
 
-###### 'bpr-window-creator #\'split-window-vertically'
+###### `bpr-window-creator #'split-window-vertically`
 Function for creating window for process.
 
-###### 'bpr-process-mode #\'shell-mode'
+###### `bpr-process-mode #'shell-mode`
 Mode for process's buffer.
 
-###### 'bpr-process-directory nil'
+###### `bpr-process-directory nil`
 Directory for process.
 If not nil, it will be assigned to default-direcotry.
 If nil, standart default-direcotry will be used,
 or projectile-project-root, if it's available and bpr-use-projectile isn't nil.
 
-###### 'bpr-use-projectile t'
+###### `bpr-use-projectile t`
 Whether to use projectile-project-root (if available) for process's directory.
 
-###### 'bpr-erase-process-buffer t'
+###### `bpr-erase-process-buffer t`
 Indicates whether the process buffer is erased at the start of the new process.
 
-###### 'bpr-scroll-direction 1'
+###### `bpr-scroll-direction 1`
 Scroll text in error window, -1 for scroll up, 1 - scroll down.
 
-###### 'bpr-show-progress t'
+###### `bpr-show-progress t`
 Whether to show progress messages for process.
 
-###### 'bpr-poll-timout 0.2'
+###### `bpr-poll-timout 0.2`
 Progress update interval.
 
-###### 'bpr-colorize-output nil'
+###### `bpr-colorize-output nil`
 Wheter to colorize process output buffer. For this operation `ansi-color-apply-on-region' is used.
