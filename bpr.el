@@ -82,7 +82,7 @@ For this operation `ansi-color-apply-on-region' is used."
 
 ;;;###autoload
 (defun bpr-spawn (cmd)
-  "Runs passed CMD asynchronously."
+  "Executes string CMD asynchronously in background."
   (interactive "sCommand:")
   (let* ((proc-name (bpr-create-process-name cmd))
          (process (get-process proc-name)))
@@ -93,7 +93,7 @@ For this operation `ansi-color-apply-on-region' is used."
       (bpr-run-process cmd))))
 
 (defun bpr-open-last-buffer ()
-  "Open the buffer last time `bpr-spawn' is used."
+  "Opens the buffer of the last spawned process."
   (interactive)
   (if (buffer-live-p bpr-last-buffer)
       (set-window-buffer (funcall bpr-window-creator) bpr-last-buffer)

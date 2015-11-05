@@ -75,10 +75,10 @@ Default directory for processes is `default-directory` of current buffer, but wi
 Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time by `bpr-open-last-buffer`. Template for buffers names: `*process-name (process-directory)*`
 
 ### Commands
-###### `bpr-spawn`
-Spawns passed shell command.
+###### `bpr-spawn (cmd)`
+Executes string CMD asynchronously in background.
 
-###### `bpr-open-last-buffer`
+###### `bpr-open-last-buffer ()`
 Opens the buffer of the last spawned process.
 
 ### Options
