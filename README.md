@@ -74,27 +74,14 @@ Default directory for processes is `default-directory` of current buffer, but wi
 
 Default major mode for process's output buffer is `shell-mode`. Note, that this buffer is only showed in case of error, but you can manually open it at any time by `bpr-open-last-buffer`. Template for buffers names: `*process-name (process-directory)*`
 
-### Examples for different use cases
-##### Running tests
-```elisp
-(defun my-test-runner ()
-  "Spawns test process"
-  (interactive)
-  (let* ((bpr-scroll-direction -1) ;; scroll to the top of the output window (wich is being shown in case of error)
-         (bpr-close-after-success t)) ;; close error window after process ended successfully (if it's not already closed)
-    (bpr-spawn "rake tests")))
-```
-##### Running builds
-```elisp
-(defun my-build-runner ()
-  "Spawns build process"
-  (interactive)
-  (let* ((bpr-process-directory "~/chromium/") ;; spawn process in this directory (instead of default-directory or projectile-project-root)
-         (bpr-poll-timout 60.0)) ;; show progress messages once in 60 seconds
-    (bpr-spawn "make long-build")))
-```
+### Commands
+###### `bpr-spawn`
+Spawns passed shell command.
 
-### All options
+###### `bpr-open-last-buffer`
+Opens the buffer of the last spawned process.
+
+### Options
 ###### `bpr-close-after-success nil`
 Indicates whether the process output window is closed on success.
 
@@ -130,3 +117,23 @@ Progress update interval.
 
 ###### `bpr-colorize-output nil`
 Wheter to colorize process output buffer. For this operation `ansi-color-apply-on-region' is used.
+
+### Examples for different use cases
+##### Running tests
+```elisp
+(defun my-test-runner ()
+  "Spawns test process"
+  (interactive)
+  (let* ((bpr-scroll-direction -1) ;; scroll to the top of the output window (wich is being shown in case of error)
+         (bpr-close-after-success t)) ;; close error window after process ended successfully (if it's not already closed)
+    (bpr-spawn "rake tests")))
+```
+##### Running builds
+```elisp
+(defun my-build-runner ()
+  "Spawns build process"
+  (interactive)
+  (let* ((bpr-process-directory "~/chromium/") ;; spawn process in this directory (instead of default-directory or projectile-project-root)
+         (bpr-poll-timout 60.0)) ;; show progress messages once in 60 seconds
+    (bpr-spawn "make long-build")))
+```

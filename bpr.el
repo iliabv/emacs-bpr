@@ -82,7 +82,7 @@ For this operation `ansi-color-apply-on-region' is used."
 
 ;;;###autoload
 (defun bpr-spawn (cmd)
-  "Invokes passed CMD in background."
+  "Runs passed CMD asynchronously."
   (interactive "sCommand:")
   (let* ((proc-name (bpr-create-process-name cmd))
          (process (get-process proc-name)))
