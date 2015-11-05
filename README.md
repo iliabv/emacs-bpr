@@ -7,7 +7,7 @@ It's similar to `async-shell-command`, but:
 - `bpr` can display buffer with process output in case of errors.
 - `bpr` can use `projectile` for assigning process directory.
 - `bpr` can format process output (understands ansi escape codes).
-- you can set different options for different processes.
+- it's possible to set different options for different processes.
 
 `bpr` is very handy for running tests/builds, but you can run any processes with it. 
 
