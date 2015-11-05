@@ -56,8 +56,6 @@ Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
 ```
 
 ## Configuration
-You can find all configuration options in the source code.
-
 If you want to set options globally for all processes:
 ```elisp
 (require 'bpr)
