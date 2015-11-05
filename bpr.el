@@ -2,7 +2,7 @@
 
 ;; Author: Ilya Babanov <ilya-babanov@ya.ru>
 ;; URL: https://github.com/ilya-babanov/emacs-bpr
-;; Version: 1.3
+;; Version: 1.4
 ;; Package-Requires: ((emacs "24"))
 ;; Keywords: background, async, process, managment
 
@@ -20,11 +20,11 @@
   :group 'extensions)
 
 (defcustom bpr-close-after-success nil
-  "Should process's window be closed after success."
+  "Indicates whether the process output window is closed on success."
   :type 'boolean)
 
 (defcustom bpr-open-after-error t
-  "Should window with process output be opened after error."
+  "Indicates whether the process output window is shown on error."
   :group 'bpr
   :type 'boolean)
 
@@ -47,12 +47,12 @@ or projectile-project-root, if it's available and bpr-use-projectile isn't nil."
   :type 'string)
 
 (defcustom bpr-use-projectile t
-  "Should projectile-project-root (if available) be used for determining default-directory"
+  "Whether to use projectile-project-root (if available) for process's directory."
   :group 'bpr
   :type 'boolean)
 
 (defcustom bpr-erase-process-buffer t
-  "Shuld process's buffer be erased before starting new process."
+  "Indicates whether the process buffer is erased at the start of the new process."
   :group 'bpr
   :type 'boolean)
 
@@ -62,22 +62,23 @@ or projectile-project-root, if it's available and bpr-use-projectile isn't nil."
   :type 'number)
 
 (defcustom bpr-show-progress t
-  "Should process's progress be shown."
+  "Whether to show progress messages for process."
   :group 'bpr
   :type 'boolean)
 
 (defcustom bpr-poll-timout 0.2
-  "Progress update interval"
+  "Progress update interval."
   :group 'bpr
   :type 'number)
 
 (defcustom bpr-colorize-output nil
-  "Should process's output be colorized"
+  "Wheter to colorize process output buffer.
+For this operation `ansi-color-apply-on-region' is used."
   :group 'bpr
   :type 'boolean)
 
 (defvar bpr-last-buffer nil
-  "Buffer for the last spawned process")
+  "Buffer for the last spawned process.")
 
 ;;;###autoload
 (defun bpr-spawn (cmd)
