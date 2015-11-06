@@ -4,7 +4,7 @@
 ;; URL: https://github.com/ilya-babanov/emacs-bpr
 ;; Version: 1.4
 ;; Package-Requires: ((emacs "24"))
-;; Keywords: background, async, process, managment
+;; Keywords: background, async, process, management
 
 ;;; Commentary:
 ;; This package provides functionality for running processes in background.
@@ -41,7 +41,7 @@
 (defcustom bpr-process-directory nil
   "Directory for process.
 If not nil, it will be assigned to default-direcotry.
-If nil, standart default-direcotry will be used,
+If nil, standard default-direcotry will be used,
 or projectile-project-root, if it's available and bpr-use-projectile isn't nil."
   :group 'bpr
   :type 'string)
@@ -72,7 +72,7 @@ or projectile-project-root, if it's available and bpr-use-projectile isn't nil."
   :type 'number)
 
 (defcustom bpr-colorize-output nil
-  "Wheter to colorize process output buffer.
+  "Whether to colorize process output buffer.
 For this operation `ansi-color-apply-on-region' is used."
   :group 'bpr
   :type 'boolean)

@@ -97,7 +97,7 @@ Mode for process's buffer.
 ###### `bpr-process-directory nil`
 Directory for process.
 If not nil, it will be assigned to default-direcotry.
-If nil, standart default-direcotry will be used,
+If nil, standard default-direcotry will be used,
 or projectile-project-root, if it's available and bpr-use-projectile isn't nil.
 
 ###### `bpr-use-projectile t`
@@ -116,7 +116,7 @@ Whether to show progress messages for process.
 Progress update interval.
 
 ###### `bpr-colorize-output nil`
-Wheter to colorize process output buffer. For this operation `ansi-color-apply-on-region' is used.
+Whether to colorize process output buffer. For this operation `ansi-color-apply-on-region' is used.
 
 ### Examples for different use cases
 ##### Running tests
@@ -124,7 +124,7 @@ Wheter to colorize process output buffer. For this operation `ansi-color-apply-o
 (defun my-test-runner ()
   "Spawns test process"
   (interactive)
-  (let* ((bpr-scroll-direction -1) ;; scroll to the top of the output window (wich is being shown in case of error)
+  (let* ((bpr-scroll-direction -1) ;; scroll to the top of the output window (which is being shown in case of error)
          (bpr-close-after-success t)) ;; close error window after process ended successfully (if it's not already closed)
     (bpr-spawn "rake tests")))
 ```
