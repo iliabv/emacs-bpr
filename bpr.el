@@ -107,7 +107,6 @@ For this operation `ansi-color-apply-on-region' is used."
          (buffer (get-buffer-create buff-name))
          (process (start-process-shell-command proc-name buffer cmd)))
     (setq bpr-last-buffer buffer)
-    (message default-directory)
     (set-process-plist process (bpr-create-process-plist))
     (set-process-sentinel process 'bpr-handle-result)
     (bpr-handle-progress process)
@@ -137,9 +136,10 @@ For this operation `ansi-color-apply-on-region' is used."
         'start-time (float-time)))
 
 (defun bpr-config-process-buffer (buffer)
-  (with-current-buffer buffer
-    (if bpr-erase-process-buffer (erase-buffer))
-    (funcall bpr-process-mode)))
+  (when buffer
+    (with-current-buffer buffer
+      (if bpr-erase-process-buffer (erase-buffer))
+      (funcall bpr-process-mode))))
 
 (defun bpr-handle-progress (process)
   (if (process-live-p process)
