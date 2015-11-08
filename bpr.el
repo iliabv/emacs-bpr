@@ -138,7 +138,7 @@ For this operation `ansi-color-apply-on-region' is used."
 (defun bpr-config-process-buffer (buffer)
   (when buffer
     (with-current-buffer buffer
-      (if bpr-erase-process-buffer (erase-buffer))
+      (when bpr-erase-process-buffer (erase-buffer))
       (funcall bpr-process-mode))))
 
 (defun bpr-handle-progress (process)
