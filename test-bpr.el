@@ -2,9 +2,9 @@
 
 ;;; Commentary:
 ;; WIP
-;; It's terrible tests.
+;; It isn't good tests:
 ;; All used emacs functions are mocked, and each test checks that correct emacs function(s) have been called.
-;; If something inside package logic changes - tests would fail.
+;; If something inside package logic changes - there is a big chance that tests will fail.
 
 ;;; Code:
 (require 'bpr)
