@@ -6,6 +6,9 @@
 ;; All used emacs functions are mocked, and each test checks that correct emacs function(s) have been called.
 ;; If something inside package logic changes - there is a big chance that tests will fail.
 
+;; How to run:
+;; cask exec buttercup -L .
+
 ;;; Code:
 (require 'bpr)
 (require 'buttercup)
