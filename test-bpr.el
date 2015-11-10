@@ -11,27 +11,7 @@
 (require 'buttercup)
 
 (describe "bpr-backage"
-  (let* (default-directory
-          fake-buffer
-          fake-process
-          fake-plist
-
-          message
-          delete-window
-          get-buffer-create
-          get-buffer-window
-          erase-buffer
-          shell-mode
-          set-window-buffer
-          split-window-vertically
-          process-live-p
-          get-process
-          process-buffer
-          process-get
-          process-exit-status
-          set-process-plist
-          set-process-sentinel
-          start-process-shell-command)
+  (let* (default-directory fake-buffer fake-process fake-plist)
 
     (before-each
       (setq default-directory "/test/")
@@ -195,8 +175,7 @@
           (fset 'get-buffer-window (lambda (buffer) (when (eq buffer fake-buffer) "I am window")))
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
-          (expect 'delete-window :to-have-been-called)))
-      )
+          (expect 'delete-window :to-have-been-called))))
 
     (describe "bpr-open-last-buffer"
       (it "should open last used buffer"
