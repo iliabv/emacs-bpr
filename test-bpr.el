@@ -126,7 +126,6 @@
                                         (when (eq process fake-process)
                                           (setq test-sentiel-handler handler))))
           (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
-          (spy-on 'set-process-sentinel :and-call-through)
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
           (expect 'split-window-vertically :to-have-been-called)
@@ -139,7 +138,6 @@
                                         (when (eq process fake-process)
                                           (setq test-sentiel-handler handler))))
           (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
-          (spy-on 'set-process-sentinel :and-call-through)
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
           (expect 'split-window-vertically :not :to-have-been-called)
@@ -151,7 +149,6 @@
                                         (when (eq process fake-process)
                                           (setq test-sentiel-handler handler))))
           (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
-          (spy-on 'set-process-sentinel :and-call-through)
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
           (expect 'split-window-vertically :to-have-been-called)
@@ -169,7 +166,6 @@
                                         (when (eq process fake-process)
                                           (setq test-sentiel-handler handler))))
           (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
-          (spy-on 'set-process-sentinel :and-call-through)
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
           (expect 'split-window-vertically :to-have-been-called)
@@ -178,7 +174,20 @@
           (fset 'get-buffer-window (lambda (buffer) (when (eq buffer fake-buffer) "I am window")))
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
-          (expect 'delete-window :to-have-been-called))))
+          (expect 'delete-window :to-have-been-called)))
+
+      (it "should colorize process buffer"
+        (let* ((bpr-colorize-output t)
+               (test-sentiel-handler nil))
+          (fset 'set-process-sentinel (lambda (process handler)
+                                        (when (eq process fake-process)
+                                          (setq test-sentiel-handler handler))))
+          (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
+          (fset 'ansi-color-apply-on-region (lambda (begin end) nil))
+          (spy-on 'ansi-color-apply-on-region :and-call-through)
+          (bpr-spawn "make build")
+          (funcall test-sentiel-handler fake-process)
+          (expect 'ansi-color-apply-on-region :to-have-been-called))))
 
     (describe "bpr-open-last-buffer"
       (it "should open last used buffer"
