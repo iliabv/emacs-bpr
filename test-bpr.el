@@ -3,8 +3,10 @@
 ;;; Commentary:
 ;; WIP
 ;; It isn't good tests:
-;; All used emacs functions are mocked, and each test checks that correct emacs function(s) have been called.
-;; If something inside package logic changes - there is a big chance that tests will fail.
+;; All used emacs functions are mocked, and each test checks that
+;; correct emacs function(s) have been called.
+;; If some internal package logic changes (without breaking the public api behavior)
+;; there is a chance that tests will fail.
 
 ;; How to run:
 ;; cask exec buttercup -L .
