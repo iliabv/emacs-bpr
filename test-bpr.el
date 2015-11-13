@@ -117,17 +117,23 @@
         (bpr-spawn "ls -la")
         (expect 'erase-buffer :to-have-been-called))
 
+      (it "should not erase process buffer if it's read only"
+        (with-current-buffer fake-buffer
+          (let* ((buffer-read-only t))
+            (bpr-spawn "ls -la")
+            (expect 'erase-buffer :not :to-have-been-called))))
+
       (it "should not erase process buffer if bpr-erase-process-buffer is nil"
         (let* ((bpr-erase-process-buffer nil))
           (bpr-spawn "ls -la")
           (expect 'erase-buffer :not :to-have-been-called)))
 
       (it "should call bpr-process-mode on process buffer"
-          (let* ((mode-func (lambda () nil))
-                 (bpr-process-mode 'mode-func))
-            (spy-on 'mode-func)
-            (bpr-spawn "ls -la")
-            (expect 'mode-func :to-have-been-called)))
+        (let* ((mode-func (lambda () nil))
+               (bpr-process-mode 'mode-func))
+          (spy-on 'mode-func)
+          (bpr-spawn "ls -la")
+          (expect 'mode-func :to-have-been-called)))
 
       (it "should display process buffer in case of error"
         (let* (test-sentiel-handler)
@@ -196,7 +202,22 @@
           (spy-on 'ansi-color-apply-on-region :and-call-through)
           (bpr-spawn "make build")
           (funcall test-sentiel-handler fake-process)
-          (expect 'ansi-color-apply-on-region :to-have-been-called))))
+          (expect 'ansi-color-apply-on-region :to-have-been-called)))
+
+      (it "should not colorize process buffer if it's read only"
+        (let* ((bpr-colorize-output t)
+               (test-sentiel-handler nil))
+          (fset 'set-process-sentinel (lambda (process handler)
+                                        (when (eq process fake-process)
+                                          (setq test-sentiel-handler handler))))
+          (fset 'process-exit-status (lambda (process) (when (eq process fake-process) 3)))
+          (fset 'ansi-color-apply-on-region (lambda (begin end) nil))
+          (spy-on 'ansi-color-apply-on-region :and-call-through)
+          (bpr-spawn "make build")
+          (with-current-buffer fake-buffer
+            (let* ((buffer-read-only t))
+              (funcall test-sentiel-handler fake-process)))
+          (expect 'ansi-color-apply-on-region :not :to-have-been-called))))
 
     (describe "bpr-open-last-buffer"
       (it "should open last used buffer"
