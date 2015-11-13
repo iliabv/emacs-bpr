@@ -1,3 +1,4 @@
+[![MELPA](http://melpa.org/packages/bpr-badge.svg)](http://melpa.org/#/bpr) [![Build Status](https://travis-ci.org/ilya-babanov/emacs-bpr.svg)](https://travis-ci.org/ilya-babanov/emacs-bpr) 
 ## Emacs-BPR (Background Process Runner)
 This package provides logic for async process execution.
 
