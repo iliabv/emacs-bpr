@@ -67,7 +67,7 @@ If you want to set options globally for all processes:
 ;; use comint-mode for processes output buffers instead of shell-mode
 (setq bpr-process-mode #'comint-mode)
 
-;; call `do-something` function whenever `bpr-spawn`'s process is compelted
+;; call `do-something` whenever bpr-spawn's process is compelted
 (setq bpr-on-completion #'do-something)
 ```
 
