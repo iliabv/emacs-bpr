@@ -60,14 +60,25 @@ Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
 If you want to set options globally for all processes:
 ```elisp
 (require 'bpr)
-(setq bpr-colorize-output t) ;; use ansi-color-apply-on-region function on output buffer
-(setq bpr-process-mode #'comint-mode) ;; use comint-mode for processes output buffers instead of shell-mode
+
+;; use ansi-color-apply-on-region function on output buffer
+(setq bpr-colorize-output t)
+
+;; use comint-mode for processes output buffers instead of shell-mode
+(setq bpr-process-mode #'comint-mode)
+
+;; call `do-something` function whenever `bpr-spawn`'s process is compelted
+(setq bpr-on-completion #'do-something)
 ```
 
 If you want to set options to particular process, set them dynamically right before `bpr-spawn`:
 ```elisp
-(let* ((bpr-erase-process-buffer nil) ;; don't erase process output buffer before starting this process again.
-       (bpr-show-progress nil)) ;; don't show progress messages (only success/error messages will be displayed)
+(let* (;; don't erase process output buffer before starting this process again.
+       (bpr-erase-process-buffer nil)
+       ;; don't show progress messages (only success/error messages will be displayed)
+       (bpr-show-progress nil)
+       ;; call `do-something` when process below is successfully completed
+       (bpr-on-success #'do-something))
     (bpr-spawn "ping -c 4 www.wikipedia.org"))
 ```
 
@@ -118,6 +129,15 @@ Progress update interval.
 
 ###### `bpr-colorize-output nil`
 Whether to colorize process output buffer. For this operation `ansi-color-apply-on-region' is used.
+
+###### `bpr-on-success '(lambda (process))`
+Function which is called in case of success. If function is interactive, it's called interactively; if not, it's called in a normal way with one argument - process.
+
+###### `bpr-on-error '(lambda (process))`
+Function which is called in case of error. If function is interactive, it's called interactively; if not, it's called in a normal way with one argument - process.
+
+###### `bpr-on-completion '(lambda (process))`
+Function, which is always called when process is completed. If function is interactive, it's called interactively; if not, it's called in a normal way with one argument - process.
 
 ### Examples for different use cases
 ##### Running tests
