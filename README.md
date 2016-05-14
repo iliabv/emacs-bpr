@@ -47,7 +47,7 @@ What's happening:
 
 ## Installation
 ### MELPA
-Use `M-x package-install bpr` and write `(require 'bpr)` in your conifg.
+`M-x package-install bpr`
 
 ### Manually
 ```elisp
