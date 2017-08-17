@@ -129,7 +129,7 @@
           (expect 'erase-buffer :not :to-have-been-called)))
 
       (it "should call bpr-process-mode on process buffer"
-        (let* ((mode-func (lambda () nil))
+        (let* ((mode-func (lambda ()))
                (bpr-process-mode 'mode-func))
           (spy-on 'mode-func)
           (bpr-spawn "ls -la")
