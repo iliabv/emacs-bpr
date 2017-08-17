@@ -129,11 +129,11 @@
           (expect 'erase-buffer :not :to-have-been-called)))
 
       (it "should call bpr-process-mode on process buffer"
-        (let* ((mode-func (lambda ()))
-               (bpr-process-mode 'mode-func))
-          (spy-on 'mode-func)
+        (let* ((test-mode-func (lambda ()))
+               (bpr-process-mode 'test-mode-func))
+          (spy-on 'test-mode-func)
           (bpr-spawn "ls -la")
-          (expect 'mode-func :to-have-been-called)))
+          (expect 'test-mode-func :to-have-been-called)))
 
       (it "should display process buffer in case of error"
         (let* (test-sentiel-handler)
