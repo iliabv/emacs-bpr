@@ -5,6 +5,7 @@
 ;; Version: 1.5
 ;; Package-Requires: ((emacs "24"))
 ;; Keywords: background, async, process, management
+;; License: Unlicense
 
 ;;; Commentary:
 ;; This package provides functionality for running processes in background.
