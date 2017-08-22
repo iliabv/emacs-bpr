@@ -131,6 +131,7 @@ if not, it's called in normal way with one argument - process."
     (setq bpr-last-buffer buffer)
     (set-process-plist process (bpr-create-process-plist))
     (set-process-sentinel process 'bpr-handle-result)
+    (set-process-filter process 'comint-output-filter)
     (bpr-handle-progress process)
     (bpr-config-process-buffer buffer)))
 
