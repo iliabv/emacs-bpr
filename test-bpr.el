@@ -38,6 +38,7 @@
       (fset 'process-exit-status (lambda (process) nil))
       (fset 'set-process-plist (lambda (process plist) (setq fake-plist plist)))
       (fset 'set-process-sentinel (lambda (process func) nil))
+      (fset 'set-process-filter (lambda (process func) nil))
       (fset 'start-process-shell-command (lambda (name buffer command) fake-process))
 
       (spy-on 'delete-window :and-call-through)
