@@ -104,7 +104,8 @@ if not, it's called in normal way with one argument - process."
 ;;;###autoload
 (defun bpr-spawn (cmd)
   "Executes string CMD asynchronously in background."
-  (interactive "sCommand: ")
+  (interactive
+   (list (read-shell-command "Command: ")))
   (let* ((proc-name (bpr-create-process-name cmd))
          (process (get-process proc-name)))
     (if process
