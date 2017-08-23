@@ -77,6 +77,13 @@ For this operation `ansi-color-apply-on-region' is used."
   :group 'bpr
   :type 'boolean)
 
+(defcustom bpr-on-start '(lambda (process))
+  "Function, which is called when the process starts.
+If function is interactive, it's called interactively;
+if not, it's called in normal way with one argument - process."
+  :group 'bpr
+  :type 'function)
+
 (defcustom bpr-on-success '(lambda (process))
   "Function, which is called in case of success.
 If function is interactive, it's called interactively;
@@ -133,7 +140,8 @@ if not, it's called in normal way with one argument - process."
     (set-process-plist process (bpr-create-process-plist))
     (set-process-sentinel process 'bpr-handle-result)
     (bpr-handle-progress process)
-    (bpr-config-process-buffer buffer)))
+    (bpr-config-process-buffer buffer)
+    (bpr-funcall (process-get process 'on-start) process)))
 
 (defun bpr-get-current-directory ()
   (if bpr-process-directory
@@ -156,6 +164,7 @@ if not, it's called in normal way with one argument - process."
         'window-creator bpr-window-creator
         'colorize-output bpr-colorize-output
         'scroll-direction bpr-scroll-direction
+        'on-start bpr-on-start
         'on-success bpr-on-success
         'on-error bpr-on-error
         'on-completion bpr-on-completion
