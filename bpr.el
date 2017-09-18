@@ -154,7 +154,7 @@ if not, it's called in normal way with one argument - process."
     default-directory))
 
 (defun bpr-create-process-name (cmd)
-  (concat cmd " (" (bpr-get-current-directory) ")"))
+  (concat cmd " (" (abbreviate-file-name (bpr-get-current-directory)) ")"))
 
 (defun bpr-create-process-plist ()
   (list 'poll-timeout bpr-poll-timout
