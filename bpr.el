@@ -174,7 +174,8 @@ if not, it's called in normal way with one argument - process."
   (when buffer
     (with-current-buffer buffer
       (when (and bpr-erase-process-buffer (not buffer-read-only))
-        (erase-buffer))
+        (let ((inhibit-read-only t))
+          (erase-buffer)))
       (funcall bpr-process-mode))))
 
 (defun bpr-handle-progress (process)
