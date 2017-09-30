@@ -31,10 +31,8 @@
       (setq fake-buffer (get-buffer-create "test-buffer"))
       (setq fake-process "I am fake process")
 
-      (fset 'abbreviate-file-name (lambda (path) path))
       (fset 'message (lambda (str &rest args) nil))
       (fset 'delete-window (lambda (window) nil))
-      ;; (fset 'get-buffer-create (lambda (name) fake-buffer))
       (fset 'get-buffer-window (lambda (buffer) nil))
       (fset 'erase-buffer (lambda () nil))
       (fset 'shell-mode (lambda () nil))
