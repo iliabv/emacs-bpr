@@ -89,7 +89,7 @@
         (expect 'get-buffer-create
           :to-have-been-called-with
           "*ls (/projects/root/)*")
-        (fset 'projectile-project-root nil))
+        (fmakunbound 'projectile-project-root))
 
 
       (it "should not use projectile when bpr-use-projectile is nil"
@@ -100,7 +100,7 @@
           (expect 'get-buffer-create
             :to-have-been-called-with
             "*ls (.)*"))
-        (fset 'projectile-project-root nil))
+        (fmakunbound 'projectile-project-root))
 
       (it "should use bpr-process-directory if it's not nil"
         (fset 'projectile-project-root (lambda () "/projects/root/"))
@@ -110,7 +110,7 @@
           (expect 'get-buffer-create
             :to-have-been-called-with
             "*ls (should/use/this)*"))
-        (fset 'projectile-project-root nil))
+        (fmakunbound 'projectile-project-root))
 
       (it "should spawn process with correct name, buffer and command"
         (with-fake-buffer fake-buffer
