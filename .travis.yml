@@ -7,7 +7,7 @@ before_install:
   - curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
   - export PATH="$HOME/.evm/bin:$PATH"
   - evm install $EVM_EMACS --use
-  - git clone --depth=1 https://github.com/cask/cask.git "$(HOME)/.cask"
+  - git clone --depth=1 https://github.com/cask/cask.git "$HOME/.cask"
   - export PATH="$HOME/.cask/bin:$PATH"
   - cask
 script:
